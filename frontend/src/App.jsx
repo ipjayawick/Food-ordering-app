@@ -1,9 +1,9 @@
+import DrawerComponent from './shared/components/DrawerComponent'
 
 function App() {
-
   return (
     <>
-      Hi
+      <DrawerComponent />
     </>
   )
 }
