@@ -7,7 +7,6 @@ import WalletPage from './wallet/pages/WalletPage'
 function App() {
   return (
     <>
-      <DrawerComponent />
       <Router>
         <Routes>
           <Route path="/" element={<DrawerComponent />} >
