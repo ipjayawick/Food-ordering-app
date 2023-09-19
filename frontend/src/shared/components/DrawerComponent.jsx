@@ -21,8 +21,9 @@ import FoodBankIcon from '@mui/icons-material/FoodBank';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import { Outlet } from 'react-router-dom';
 
-const drawerWidth = 200;
+const drawerWidth = 230;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -117,11 +118,10 @@ export default function DrawerComponent() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h3" noWrap component="div">
-            කමුද?
+            Deliverr
           </Typography>
         </Toolbar>
       </AppBar>
-
       <Drawer variant="permanent" open={open}>
         <List sx={{ marginTop: 10 }}>
           {listItems.map((item, index) => (
@@ -150,6 +150,10 @@ export default function DrawerComponent() {
           ))}
         </List>
       </Drawer>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <DrawerHeader sx={{mb:2}}/>
+        <Outlet/>
+      </Box>
     </Box>
   );
 }
