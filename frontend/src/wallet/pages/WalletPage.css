@@ -1,7 +1,7 @@
 .MuiTab-root:active {
-    filter: brightness(0.7); /* Reduce brightness when pressed */
-  }
-  
-  .MuiButton-root:active {
-    filter: brightness(0.7); /* Reduce brightness when pressed */
-  }
+  filter: brightness(0.7); /* Reduce brightness when pressed */
+}
+
+.MuiButton-root:active {
+  filter: brightness(0.7); /* Reduce brightness when pressed */
+}

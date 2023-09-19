@@ -65,7 +65,7 @@ const App = () => {
     });
 
     table2Data.forEach((row) => {
-        debitSum += row.column2;
+      debitSum += row.column2;
     });
 
     setCreditTotal(creditSum);
@@ -74,20 +74,44 @@ const App = () => {
 
   return (
     <Container>
- <Tabs value={tabValue} onChange={handleTabChange} sx={{display:"flex"}}>
-        <Tab label="Credit" style={{ minWidth: "565px" }}/>
-        <Tab label="Debit" style={{ minWidth: "565px" }}/>
+      <Tabs
+        value={tabValue}
+        onChange={handleTabChange}
+        sx={{ display: "flex" }}
+      >
+        <Tab label="Credit" style={{ minWidth: "565px" }} />
+        <Tab label="Debit" style={{ minWidth: "565px" }} />
       </Tabs>
 
       <TabPanel value={tabValue} index={0}>
-      <Typography variant= 'h4' sx={{ backgroundColor: 'gray', minWidth: 700, minHeight:50, textAlign:'center', }}>Total Credit: {creditTotal} LKR</Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            backgroundColor: "gray",
+            minWidth: 700,
+            minHeight: 50,
+            textAlign: "center",
+          }}
+        >
+          Total Credit: {creditTotal} LKR
+        </Typography>
         <br />
         <DisplayTable data={table1Data} who={"TO WHO"} />
       </TabPanel>
       <TabPanel value={tabValue} index={1}>
-      <Typography variant= 'h4' sx={{ backgroundColor: 'gray', minWidth: 700, minHeight:50, textAlign:'center', }}>Total Debit: {debitTotal} LKR</Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            backgroundColor: "gray",
+            minWidth: 700,
+            minHeight: 50,
+            textAlign: "center",
+          }}
+        >
+          Total Debit: {debitTotal} LKR
+        </Typography>
         <br />
-        <DisplayTable data={table2Data} who={"FOR WHO"}/>
+        <DisplayTable data={table2Data} who={"FOR WHO"} />
       </TabPanel>
     </Container>
   );
@@ -97,7 +121,7 @@ const TabPanel = ({ value, index, children }) => (
   <div hidden={value !== index} role="tabpanel">
     {value === index && (
       <Box p={3}>
-        <Typography>{children}</Typography>
+        <div>{children}</div>
       </Box>
     )}
   </div>
@@ -108,7 +132,7 @@ const DisplayTable = ({ data, who }) => (
     <Table>
       <TableHead>
         <TableRow>
-        <TableCell>DATE</TableCell>
+          <TableCell>DATE</TableCell>
           <TableCell>AMOUNT</TableCell>
           <TableCell>{who}</TableCell>
         </TableRow>
