@@ -10,13 +10,11 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
@@ -83,9 +81,10 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const listItems = [
-  { text: 'Dashboard', icon: <DashboardIcon fontSize='large' /> },
+  { text: 'Dashboard', icon: <DashboardIcon fontSize='large' /> , link:''},
   { text: 'Restaurants', icon: <FoodBankIcon fontSize='large' /> },
-  { text: 'Orders', icon: <PlaylistAddIcon fontSize='large' /> },
+  { text: 'Create Session', icon: <PlaylistAddIcon fontSize='large' /> },
+  { text: 'My Orders', icon: <ListAltIcon fontSize='large' /> },
   { text: 'Wallet', icon: <AccountBalanceWalletIcon fontSize='large' /> },
 ]
 
