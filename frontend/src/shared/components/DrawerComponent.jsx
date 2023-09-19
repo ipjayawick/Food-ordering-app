@@ -18,7 +18,11 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
-const drawerWidth = 240;
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+
+const drawerWidth = 200;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -58,14 +62,6 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
 }));
 
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -84,6 +80,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
   }),
 );
+
+const listItems = [
+  { text: 'Dashboard', icon: <DashboardIcon fontSize='large' /> },
+  { text: 'Restaurants', icon: <FoodBankIcon fontSize='large' /> },
+  { text: 'Orders', icon: <PlaylistAddIcon fontSize='large' /> },
+  { text: 'Wallet', icon: <AccountBalanceWalletIcon fontSize='large' /> },
+]
 
 export default function DrawerComponent() {
   const theme = useTheme();
@@ -105,11 +108,10 @@ export default function DrawerComponent() {
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onClick={open ? handleDrawerClose : handleDrawerOpen}
             edge="start"
             sx={{
               marginRight: 5,
-              ...(open && { display: 'none' }),
             }}
           >
             <MenuIcon />
@@ -121,37 +123,31 @@ export default function DrawerComponent() {
       </AppBar>
 
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
-
-        <List>
-          <ListItem disablePadding sx={{ display: 'block' }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
+        <List sx={{ marginTop: 10 }}>
+          {listItems.map((item, index) => (
+            <ListItem key={index} disablePadding sx={{ display: 'block' }}>
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
+                  minHeight: 60,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 1.5,
                 }}
               >
-                <FoodBankIcon sx={{ fontSize: 35 }} />
-              </ListItemIcon>
-              <ListItemText sx={{ opacity: open ? 1 : 0 }} >
-                <Typography variant='h5'>
-                  Restaurants
-                </Typography>
-              </ListItemText>
-            </ListItemButton>
-          </ListItem>
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: 'center',
+                  }}
+                >
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText sx={{ opacity: open ? 1 : 0 }} >
+                  <Typography variant='h6'>{item.text}</Typography>
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
       </Drawer>
     </Box>
