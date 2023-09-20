@@ -23,16 +23,14 @@ const App = () => {
     {
       id: 1,
       column1: "18/9/2023",
-      column2: "Sahana",
-      column3: "Chicken Rice",
-      column4: 300,
+      column2: 200,
+      column3: "Miral",
     },
     {
       id: 2,
-      column1: "19/9/2023",
-      column2: "Sahana",
-      column3: "Chicken Half",
-      column4: 260,
+      column1: "18/9/2023",
+      column2: 260,
+      column3: "Buddhima",
     },
     // Add more rows as needed
   ];
@@ -41,16 +39,14 @@ const App = () => {
     {
       id: 1,
       column1: "18/9/2023",
-      column2: "Mac",
-      column3: "Chicken Half",
-      column4: 300,
+      column2: 300,
+      column3: "IP",
     },
     {
       id: 2,
       column1: "19/9/2023",
-      column2: "Sahana",
-      column3: "Vege Half",
-      column4: 200,
+      column2: 200,
+      column3: "Ravija",
     },
     // Add more rows as needed
   ];
@@ -65,11 +61,11 @@ const App = () => {
     let debitSum = 0;
 
     table1Data.forEach((row) => {
-      creditSum += row.column4;
+      creditSum += row.column2;
     });
 
     table2Data.forEach((row) => {
-      debitSum += row.column4;
+      debitSum += row.column2;
     });
 
     setCreditTotal(creditSum);
@@ -78,20 +74,44 @@ const App = () => {
 
   return (
     <Container>
-      <Tabs value={tabValue} onChange={handleTabChange}>
-        <Tab label="Credit" />
-        <Tab label="Debit" />
+      <Tabs
+        value={tabValue}
+        onChange={handleTabChange}
+        sx={{ display: "flex" }}
+      >
+        <Tab label="Credit" style={{ minWidth: "565px" }} />
+        <Tab label="Debit" style={{ minWidth: "565px" }} />
       </Tabs>
 
       <TabPanel value={tabValue} index={0}>
-        <Typography>Total Credit: {creditTotal} LKR</Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            backgroundColor: "gray",
+            minWidth: 700,
+            minHeight: 50,
+            textAlign: "center",
+          }}
+        >
+          Total Credit: {creditTotal} LKR
+        </Typography>
         <br />
-        <DisplayTable data={table1Data} />
+        <DisplayTable data={table1Data} who={"TO WHO"} />
       </TabPanel>
       <TabPanel value={tabValue} index={1}>
-        <Typography>Total Debit: {debitTotal} LKR</Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            backgroundColor: "gray",
+            minWidth: 700,
+            minHeight: 50,
+            textAlign: "center",
+          }}
+        >
+          Total Debit: {debitTotal} LKR
+        </Typography>
         <br />
-        <DisplayTable data={table2Data} />
+        <DisplayTable data={table2Data} who={"FOR WHO"} />
       </TabPanel>
     </Container>
   );
@@ -101,30 +121,28 @@ const TabPanel = ({ value, index, children }) => (
   <div hidden={value !== index} role="tabpanel">
     {value === index && (
       <Box p={3}>
-        <Typography>{children}</Typography>
+        <div>{children}</div>
       </Box>
     )}
   </div>
 );
 
-const DisplayTable = ({ data }) => (
+const DisplayTable = ({ data, who }) => (
   <TableContainer component={Paper}>
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell>Date</TableCell>
-          <TableCell>Shop</TableCell>
-          <TableCell>Meal</TableCell>
-          <TableCell>Amount</TableCell>
+          <TableCell>DATE</TableCell>
+          <TableCell>AMOUNT</TableCell>
+          <TableCell>{who}</TableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         {data.map((row) => (
           <TableRow key={row.id}>
             <TableCell>{row.column1}</TableCell>
-            <TableCell>{row.column2}</TableCell>
+            <TableCell>{row.column2} LKR</TableCell>
             <TableCell>{row.column3}</TableCell>
-            <TableCell>{row.column4} LKR</TableCell>
           </TableRow>
         ))}
       </TableBody>

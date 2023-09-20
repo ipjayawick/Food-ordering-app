@@ -10,18 +10,16 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
 const drawerWidth = 230;
 
@@ -83,15 +81,18 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const listItems = [
-  { text: 'Dashboard', icon: <DashboardIcon fontSize='large' /> },
-  { text: 'Restaurants', icon: <FoodBankIcon fontSize='large' /> },
-  { text: 'Orders', icon: <PlaylistAddIcon fontSize='large' /> },
-  { text: 'Wallet', icon: <AccountBalanceWalletIcon fontSize='large' /> },
+  { text: 'Dashboard', icon: <DashboardIcon fontSize='large' />, link: '/' },
+  { text: 'Restaurants', icon: <FoodBankIcon fontSize='large' />, link: '/shops' },
+  { text: 'Create Session', icon: <PlaylistAddIcon fontSize='large' />, link: '/addOrder' },
+  { text: 'My Orders', icon: <ListAltIcon fontSize='large' />, link: '/orders' },
+  { text: 'Wallet', icon: <AccountBalanceWalletIcon fontSize='large' />, link: '/wallet' },
 ]
 
 export default function DrawerComponent() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -132,6 +133,8 @@ export default function DrawerComponent() {
                   justifyContent: open ? 'initial' : 'center',
                   px: 1.5,
                 }}
+                onClick={() => navigate(item.link)}
+                selected={location.pathname === item.link}
               >
                 <ListItemIcon
                   sx={{
@@ -151,8 +154,8 @@ export default function DrawerComponent() {
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader sx={{mb:2}}/>
-        <Outlet/>
+        <DrawerHeader sx={{ mb: 2 }} />
+        <Outlet />
       </Box>
     </Box>
   );
