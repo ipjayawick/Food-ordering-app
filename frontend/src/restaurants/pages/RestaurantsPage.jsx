@@ -55,7 +55,7 @@ const cardData = [
 
 function RestaurantsPage() {
     return (
-        <Container maxWidth="none">
+        <Container>
             <Grid container spacing={3}>
                 {cardData.map((card, index) => (
                     <Grid item xs={12} sm={6} md={4} key={index}>
